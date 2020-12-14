@@ -163,8 +163,21 @@ fields:
     datatype: text
   - 'Agency phone number': agency_phone_number
     datatype: text
-  - 'Agency': agency
-  - 'Agency relationship': agency_relationship
+  - 'Agency Name': agency
+---
+question: |
+  What is your relationship with the agency?
+fields:
+  - Agency Relationship: agency_relationship
+    choices:
+      - private counsel
+      - non profit organization
+      - social services
+      - Other
+  - Other agency relationship: other_relationship
+    show if:
+      variable: agency_relationship
+      is: Other
 ---
 progress: 100
 mandatory: True
