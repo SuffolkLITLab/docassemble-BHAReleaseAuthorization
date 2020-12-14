@@ -46,7 +46,10 @@ code: |
   allowed_courts = interview_metadata["BHA_Authorization_of_Release_English"]["allowed courts"]
   nav.set_section('review_BHA_Authorization_of_Release_English')
   user_role = 'plaintiff'
-  users[0]
+  users[0].name.first
+  users[0].name.middle
+  users[0].name.last
+  users[0].name.suffix
   users[0].address.address
   user_social_security
   agency
@@ -58,6 +61,7 @@ code: |
   basic_questions_signature_flow
   users[0].signature
   BHA_Authorization_of_Release_English = True
+  users.there_is_another= False 
 ---
 comment: |
   This question is used to introduce your interview. Please customize
@@ -128,12 +132,26 @@ subquestion: |
   
    ${ pdf_concatenate(BHA_Authorization_of_Release_English_attachment['preview'], filename='BHA_Authorization_of_Release_English.pdf')}
 ---
+id: your name
+question:  |
+  What is your name?
+fields:
+  - First Name: users[0].name.first
+  - Middle Name: users[0].name.middle
+    required: False
+  - Last Name: users[0].name.last
+  - Suffix: users[0].name.suffix
+    code: |
+      name_suffix()
+    required: False  
+---
 id: User Information
 question: |
   User Information
 fields:
-  - 'What is your social security number': user_social_security 
-    datatype: number
+  - 'Last Four Digits of social security number (xxx-xx-)': user_social_security 
+    datatype: text
+    maxlength: 4
 ---
 id: Agency Information
 question: |
@@ -142,9 +160,9 @@ subquestion: |
   Placeholder text
 fields:
   - 'Client control number': client_control_number
-    datatype: number
+    datatype: text
   - 'Agency phone number': agency_phone_number
-    datatype: number
+    datatype: text
   - 'Agency': agency
   - 'Agency relationship': agency_relationship
 ---
