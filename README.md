@@ -26,5 +26,5 @@ One of my favorite aspects about this project, and the nature of this work as a 
 Upon implementation of our Partner feedback, we began more structured, capturable user feedback, through testing scenarios, designed to catch all the most difficult "edge cases" the app may need to face. Using a googlesheet to track errors and feedback, I was able to iron out most of the most glaring obstacles between me and a viable MVP. This real-world testing, usinng non-familiar users, proved invaluable for taking an objective view at my product, through the eyes of the average end user. This feedback proved particularly critical in motivating me to include embeded hyperlinks using HTML. I even attempted embedding a google map, pinned on the Occupancy Department (I still have to work out some kinks with that-the map kind of comes and goes as it  wants). 
 
 # Flashback: The Pitch
-<a href="https://docs.google.com/presentation/d/1KKZd9GNPwF8sTqx4ZWrBGwT4BzJtNR34_y1QoP8aU-c/edit#slide=id.g9d4fd5d06a_0_310"Deck></a>
+<a href="https://docs.google.com/presentation/d/1KKZd9GNPwF8sTqx4ZWrBGwT4BzJtNR34_y1QoP8aU-c/edit#slide=id.g9d4fd5d06a_0_310">Deck</a>
 
