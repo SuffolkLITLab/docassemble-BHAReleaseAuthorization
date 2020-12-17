@@ -46,18 +46,23 @@ code: |
   allowed_courts = interview_metadata["BHA_Authorization_of_Release_English"]["allowed courts"]
   nav.set_section('review_BHA_Authorization_of_Release_English')
   user_role = 'plaintiff'
-  users[0]
+  users[0].name.first
+  users[0].name.middle
+  users[0].name.last
+  users[0].name.suffix
   users[0].address.address
   user_social_security
+  if has_client_number:
+    client_control_number
   agency
   agency_phone_number
   agency_relationship
-  client_control_number
   set_progress(14.29)
   # Pre-canned preview screen
   basic_questions_signature_flow
   users[0].signature
   BHA_Authorization_of_Release_English = True
+  users.there_is_another= False
 ---
 comment: |
   This question is used to introduce your interview. Please customize
@@ -77,27 +82,24 @@ subquestion: |
   
   Step 1. Answer questions that will fill in your form for you.  
   Step 2. Preview the completed form.  
-  Step 3. Download and print the final form. You will need to deliver it
-  to the court on your own.
+  Step 3. Download and print the final form (note- the text in your document may appear slightly compacted in the preview view. When you download the form, the format will adjust). 
+  Step 4. Send your form.
  
+  If you have questions about this form, or need to apply for housing you can call the Boston Housing Authority Occupancy Department at <a href="tel:6179883400">(617)988-3400</a>, or visit the [For-Applicants Page](https://www.bostonhousing.org/en/For-Applicants/How-Do-I-Apply-for-BHA-Housing.aspx)on their website. The Occupancy Department is located on the 3rd floor at 52 Chauncy street, Boston, Massachusetts 02111. 
   
-  If you do not live in Massachusetts, you may be able to get help for your 
-  legal problem from [your local legal aid 
-  provider](https://www.lsc.gov/what-legal-aid/find-legal-aid).
+  
+  They have walk in hours available 9am-5pm, Monday-Wednesday. The status call hours are available Monday-Wednesday from 11am-2pm, Monday-Wednesday.
+  
+  
+  If you do not live in Massachusetts, you may be able to get help for your legal problem from [your local legal aid provider](https://www.lsc.gov/what-legal-aid/find-legal-aid).
   
   Tap the {green words} in any screen for a definition or more information.
   
-  If you have questions about this form or the court process, 
-  call the Trial Court’s Emergency HelpLine:  
-  833-91-COURT (833-912-6878)  
-  Monday-Friday  
-  8:30am - 4:30pm
-
   % if chat_partners_available().help:
   Live help is currently available in this interview. Click the speech bubble
   (:comment-alt:) in the navigation bar to connect to a live advocate for help.
   % endif
-
+  
 fields:
   - To continue, you must accept the [terms of use](https://massaccess.suffolklitlab.org/privacy/): acknowledged_information_use
     datatype: checkboxes
@@ -107,7 +109,7 @@ fields:
       - I accept the terms of use.
     validation messages:
       minlength: |
-        You cannot continue unless you agree to the terms of use.        
+        You cannot continue unless you agree to the terms of use.    
 terms:
   green words: |
     Green words are legal terms or a short way of referring to something that needs more explanation. The definition or explanation pops up when you tap the green words.
@@ -128,25 +130,68 @@ subquestion: |
   
    ${ pdf_concatenate(BHA_Authorization_of_Release_English_attachment['preview'], filename='BHA_Authorization_of_Release_English.pdf')}
 ---
+id: your name
+question:  |
+  What is your name?
+fields:
+  - First Name: users[0].name.first
+  - Middle Name: users[0].name.middle
+    required: False
+  - Last Name: users[0].name.last
+  - Suffix: users[0].name.suffix
+    code: |
+      name_suffix()
+    required: False   
+---
 id: User Information
 question: |
-  User Information
+  Identity Verification
+subquestion: |
+  To allow BHA to verify your identity, please provide the last four digits of your social security number
 fields:
-  - 'What is your social security number': user_social_security 
-    datatype: number
+  - 'Last Four of Social Security Number (xxx-xx-_ _ _ _)': user_social_security 
+    datatype: text
+    maxlength: 4
 ---
 id: Agency Information
 question: |
   Agency Information
 subquestion: |
-  Placeholder text
+  Enter the following information about the agency or individual you wish to release your records to.
 fields:
-  - 'Client control number': client_control_number
-    datatype: number
+  - 'Agency Name': agency
   - 'Agency phone number': agency_phone_number
-    datatype: number
-  - 'Agency': agency
-  - 'Agency relationship': agency_relationship
+    datatype: text
+---
+id: client status
+question: |
+  Answer the following
+subquestion: |
+  Have you worked with the Boston Housing Authority to find housing before?
+fields:
+  - : has_client_number
+    datatype: yesnoradio
+    required: false
+  - "What is your client control number": client_control_number
+    datatype: text
+    show if: has_client_number
+    required: false
+under: |
+  Note: If you have never recieved official correspondance from BHA, hit the back button and answer no to the last question.
+---
+question: |
+  What is your relationship with the agency?
+fields:
+  - Agency Relationship: agency_relationship
+    choices:
+      - private counsel
+      - non profit organization
+      - social services
+      - Other
+  - Other agency relationship: other_relationship
+    show if:
+      variable: agency_relationship
+      is: Other
 ---
 progress: 100
 mandatory: True
@@ -161,6 +206,16 @@ subquestion: |
   ${pdf_concatenate(BHA_Authorization_of_Release_English_attachment['final'], filename='BHA_Authorization_of_Release_English.pdf') }
 need: BHA_Authorization_of_Release_English
 attachment code: BHA_Authorization_of_Release_English_attachment['final']
+script:
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.479487618653!2d-71.06213318425183!3d42.35361964350025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082f2816735%3A0x62e7f977d14b40c7!2s52%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608143737668!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+css: |
+ <style>
+  div.relative {
+    position: relative;
+    center: 30px;
+    border: 3px solid #73AD21;
+   } 
+ </style>
 ---
 objects:
   - BHA_Authorization_of_Release_English_attachment: DADict
@@ -170,6 +225,39 @@ attachment:
     name: Bha authorization of release english
     filename: Bha_authorization_of_release_english
     docx template file: BHA_Authorization_of_Release_English.docx
+---
+id: signature choice
+decoration: file-signature
+question: |
+  Sign your BHA Release Authorization form.  
+subquestion: |
+  Your forms are almost ready. You need to sign them first.
+  
+  Use the mouse or touchpad on your computer or
+  sign with your finger on your phone. 
+   
+  You can send the forms to someone else to sign if you choose the "phone"         option.
+  
+  By signing this document, you agree to the {terms and conditions}.
+
+field: signature_choice
+buttons:  
+  - Sign on my phone: phone
+    image: mobile-alt
+  - Sign on this computer: this device
+    image: desktop
+continue button field: saw_signature_choice
+script: |
+  <script>
+    $(".da-field-buttons > div > .btn-da-custom").last().after("<br>")
+    $(".da-field-buttons > div > .btn-da-custom").first().before("<br>")
+  </script>
+terms:
+  terms and conditions: |
+    I, ${ users[0] } hereby authorize ${ agency }, to inspect and/or copy all records maintained by the Boston Housing Authority Occupancy Department as part of my applicant file. I understand that a photocopy of this authorization is as valid as the original. 
+    
+    For purposes of discussing my eligibility for public housing only, I further Authorize ${ agency } to inspect (Not Copy) any CORI information about me held by the Boston Housing Authority.
+
 ---
 id: BHA_Authorization_of_Release_English review screen
 event: review_BHA_Authorization_of_Release_English
