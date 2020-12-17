@@ -20,6 +20,8 @@ Knowing all of this, we began the process of envisioning a solution. We identifi
 # <a href="https://github.com/SuffolkLITLab/docassemble-GeneralAuthorizationforRelease">Joelle Ataya's General Release Form</a>
 # <a href="https://github.com/SuffolkLITLab/docassemble-AttorneyAuthorizationforRelease">Kayla Gallagher's Attorney Release Form</a>
 
+Once we had a general sense of who the stakeholders were, what their problem was, and thought of potential solutions, we needed more concrete guidance. This is where we turned to subject matter, to really zero in on what an ideal solution would look like to most end users. The process of getting in touch with someone at the agency was a telling experience in and of itself. If I, a motivated student, sitting in the comfort of my living room was having trouble getting answers, I get anxiety thinking about how I would feel in that situation, but relying on help for shelter, rahter than input for a project. With some persistance, I was able to get in touch with someone at the BHA, who was happy to answer all of my questions, and provided invaluable guidance about what information should be provided within the interview. I could tell she had answered all of these questions many times before, and therefore, I knew it would make for a far superior user experience if I could answer them in my interview, without the user ever needing to ask. 
+
 # User Testing and Refinement:
 
 One of the major advantages of working in a group was the ample opportunity to constantly test,  provide feedback, and iterate on our forms throughout this process. 
