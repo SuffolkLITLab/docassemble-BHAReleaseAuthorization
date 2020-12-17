@@ -5,7 +5,7 @@ comment: |
   The metadata section controls the tab title and saved interview title. You can delete this section if you include this YAML file in another YAML file.
 metadata:
   title: |
-   BHA Authorization of Release English
+   BHA Authorization of Release 
   short title: |
    BHA Authorization 
 ---
@@ -50,27 +50,58 @@ code: |
   users[0].name.middle
   users[0].name.last
   users[0].name.suffix
-  users[0].address.address
   user_social_security
+  if has_client_number:
+    client_control_number
   agency
   agency_phone_number
   agency_relationship
-  client_control_number
   set_progress(14.29)
   # Pre-canned preview screen
-  basic_questions_signature_flow
-  users[0].signature
+  user_signature
   BHA_Authorization_of_Release_English = True
-  users.there_is_another= False 
+  users.there_is_another= False
+  court_emails = False
+  users[0].address.address = False
+  users[0].address.unit = False
+  users[0].address.city = False
+  users[0].address.state = False
+  users[0].address.zip = False
+---
+question: |
+  Sign your name
+subquestion: |
+  By signing your name, you agree to
+  BHA's {terms and conditions}.
+signature: user_signature
+under: |
+  ${ users[0] }
+terms:
+  terms and conditions: |
+    I, ${ users[0] }, hereby authorize ${ agency }, to inspect and/or copy all records maintained by the Boston Housing Authority Occupancy Department as part of my applicant file. I understand that a photocopy of this authorization is as valid as the original. 
+    
+    For purposes of discussing my eligibility for public housing only, I further Authorize ${ agency } to inspect (Not Copy) any CORI information about me held by the Boston Housing Authority.
 ---
 comment: |
   This question is used to introduce your interview. Please customize
 id: Bha authorization of release english
 continue button field: BHA_Authorization_of_Release_English_intro
 question: |
-  Boston Housing Authority (BHA) Authorization of Release Form
+  Boston Housing Authority Authorization of Release Form
 subquestion: |
-  This form allows you to grant your attorney access to inspect and/or copy your records.
+  This Boston Housing Authority (BHA) form authorizes BHA to release your housing records to the agency you designate during this interview. Forms should be submitted by mail whenever possible at BHA-Occupancy Department, 56 Chauncy Street, Boston, MA 02111, or if necessary, applications can be dropped off at BHA’s housing service center at 56 Chauncy Street.
+
+  {The on-going COVID-19 Pandemic} has temporarily altered BHA's submission process.
+terms:
+  The on-going COVID-19 Pandemic: |
+    BOSTON, MA – With the evolving of COVID-19, the Boston Housing Authority is announcing heightened restrictions at its Chauncy Street Headquarters and public housing developments in order to limit in-person contact and protect BHA residents, voucher holders and staff. These changes go into effect Wednesday, March 18, 2020. In-person appointments at BHA’s Occupancy Department will be conducted by phone and through the use of electronic technology or will be rescheduled, as appropriate.
+    
+    BHA staff will continue to provide vital services by mail, phone, and electronic technology for the foreseeable future. In addition, visitationto BHA’s Elderly/Disabled Public Housing Developments will be limited to primary caregivers, service providers and family necessary to the health and wellbeing of residents.
+   
+under: |
+  **Note:** [click here](https://www.bostonhousing.org/en/News/Boston-Housing-Authority-will-reduce-walk-ins-at-m.aspx) to read the full announcement. 
+script: |
+    <p style="text-align: center; top"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.4786931024523!2d-71.06208338454388!3d42.35363657918726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082946064ef%3A0xf37ccf96a6c91b4a!2s56%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608191126357!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 ---
 id: mass access intro
 continue button field: ma_access_intro
@@ -81,27 +112,21 @@ subquestion: |
   
   Step 1. Answer questions that will fill in your form for you.  
   Step 2. Preview the completed form.  
-  Step 3. Download and print the final form. You will need to deliver it
-  to the court on your own.
+  Step 3. Download and print the final form (note- the text in your document may appear slightly compacted in the preview view. When you download the form, the format will adjust). 
+  Step 4. Send your form.
  
+  If you have questions about this form, or need to apply for housing you can call the Boston Housing Authority Occupancy/Admissions Department at <a href="tel:6179883400">(617)988-3400</a>, or visit the [For-Applicants Page](https://www.bostonhousing.org/en/For-Applicants/How-Do-I-Apply-for-BHA-Housing.aspx) on their website. 
   
-  If you do not live in Massachusetts, you may be able to get help for your 
-  legal problem from [your local legal aid 
-  provider](https://www.lsc.gov/what-legal-aid/find-legal-aid).
+  
+  If you do not live in Massachusetts, you may be able to get help for your legal problem from [your local legal aid provider](https://www.lsc.gov/what-legal-aid/find-legal-aid).
   
   Tap the {green words} in any screen for a definition or more information.
   
-  If you have questions about this form or the court process, 
-  call the Trial Court’s Emergency HelpLine:  
-  833-91-COURT (833-912-6878)  
-  Monday-Friday  
-  8:30am - 4:30pm
-
   % if chat_partners_available().help:
   Live help is currently available in this interview. Click the speech bubble
   (:comment-alt:) in the navigation bar to connect to a live advocate for help.
   % endif
-
+  
 fields:
   - To continue, you must accept the [terms of use](https://massaccess.suffolklitlab.org/privacy/): acknowledged_information_use
     datatype: checkboxes
@@ -111,7 +136,7 @@ fields:
       - I accept the terms of use.
     validation messages:
       minlength: |
-        You cannot continue unless you agree to the terms of use.        
+        You cannot continue unless you agree to the terms of use.    
 terms:
   green words: |
     Green words are legal terms or a short way of referring to something that needs more explanation. The definition or explanation pops up when you tap the green words.
@@ -143,13 +168,15 @@ fields:
   - Suffix: users[0].name.suffix
     code: |
       name_suffix()
-    required: False  
+    required: False   
 ---
 id: User Information
 question: |
-  User Information
+  Identity Verification
+subquestion: |
+  To allow BHA to verify your identity, please provide the last four digits of your social security number
 fields:
-  - 'Last Four Digits of social security number (xxx-xx-)': user_social_security 
+  - 'Last Four of Social Security Number (xxx-xx-_ _ _ _)': user_social_security 
     datatype: text
     maxlength: 4
 ---
@@ -157,39 +184,62 @@ id: Agency Information
 question: |
   Agency Information
 subquestion: |
-  Placeholder text
+  Enter the following information about the {agency or individual} you wish to release your records to.
 fields:
-  - 'Client control number': client_control_number
-    datatype: text
+  - 'Agency Name': agency
   - 'Agency phone number': agency_phone_number
     datatype: text
-  - 'Agency Name': agency
+terms:
+  agency or individual: |
+    Your agency is the party assisting you with your housing application process. Your agency may be a non-profit organization or other advocacy group, government organization (DCF, Family Services, etc.), an attorney/law firm, or other private individual. For help finding out who your agency is, call you can contactthe BHA Occupancy/Admissions Department at <a href="tel:6179883400">(617)988-3400</a>, or visit their [Contact Us Page](https://www.bostonhousing.org/en/Contact-Us.aspx).
+---
+id: client status
+question: |
+  Answer the following
+subquestion: |
+  Have you worked with the Boston Housing Authority to find housing before?
+fields:
+  - : has_client_number
+    datatype: yesnoradio
+    required: false 
+  - "What is your client control number": client_control_number
+    datatype: text
+    show if: has_client_number
+    required: false
+under: |
+     **If you have never recieved official correspondance from BHA, answer no.**
 ---
 question: |
-  What is your relationship with the agency?
+  What kind of {agency} are you currently working with?
 fields:
   - Agency Relationship: agency_relationship
     choices:
-      - private counsel
-      - non profit organization
-      - social services
+      - Private Attorney or Law Firm
+      - Non Profit Organization
+      - Government Office
+      - Social Services (DHS, Family Services  etc.)
       - Other
   - Other agency relationship: other_relationship
     show if:
       variable: agency_relationship
       is: Other
+terms:
+  agency: |
+    Your agency is the party assisting you with your housing application process. Your agency may be a non-profit organization or other advocacy group, government organization (DCF, Family Services, etc.), an attorney/law firm, or other private individual. For help finding out who your agency is, call you can contactthe BHA Occupancy/Admissions Department at <a href="tel:6179883400">(617)988-3400</a>, or visit their [Contact Us Page](https://www.bostonhousing.org/en/Contact-Us.aspx).
 ---
 progress: 100
 mandatory: True
-id: Your form is ready to download and file
+id: Your form is ready to download 
 question: |
-  Your form is ready to download and file
+  Your form is ready to download 
 subquestion: |
-  Thank you ${users}. Your form is ready to download and deliver.
+  Thank you ${users}. Your form is ready to download. You can now print this form out and mail it to the Boston Housing Authority. [Click here](https://www.bostonhousing.org/getattachment/News/A-Message-to-BHA-Residents-Concerning-Coronavirus/Chauncy-signage-final-(003).pdf.aspx) for detailed instructions about how to subit this form to the BHA's Department of Occupancy/Admissions. 
+
+   ![markdown logo](data:image/jpeg;base64,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)
   
-  Below is a preview of your form.
+  Here is a preview of your form:
   
-  ${pdf_concatenate(BHA_Authorization_of_Release_English_attachment['final'], filename='BHA_Authorization_of_Release_English.pdf') }
+  ${pdf_concatenate(BHA_Authorization_of_Release_English_attachment['final'], filename='BHA_Authorization_of_Release_English.pdf') } 
 need: BHA_Authorization_of_Release_English
 attachment code: BHA_Authorization_of_Release_English_attachment['final']
 ---
@@ -198,9 +248,41 @@ objects:
 ---
 attachment:
     variable name: BHA_Authorization_of_Release_English_attachment[i]
-    name: Bha authorization of release english
+    name: BHA Authorization of Release 
     filename: Bha_authorization_of_release_english
     docx template file: BHA_Authorization_of_Release_English.docx
+---
+id: signature choice
+decoration: file-signature
+question: |
+  Sign your BHA Release Authorization form.  
+subquestion: |
+  Your form is almost ready. You need to sign it first.
+  
+  Use the mouse or touchpad on your computer or
+  sign with your finger on your phone. 
+   
+  You can send the forms to someone else to sign if you choose the "phone"         option.
+  
+  By signing this document, you agree to the {terms and conditions}.
+
+field: signature_choice
+buttons:  
+  - Sign on my phone: phone
+    image: mobile-alt
+  - Sign on this computer: this device
+    image: desktop
+continue button field: saw_signature_choice
+script: |
+  <script>
+    $(".da-field-buttons > div > .btn-da-custom").last().after("<br>")
+    $(".da-field-buttons > div > .btn-da-custom").first().before("<br>")
+  </script>
+terms:
+  terms and conditions: |
+    I, ${ users[0] }, hereby authorize ${ agency }, to inspect and/or copy all records maintained by the Boston Housing Authority Occupancy Department as part of my applicant file. I understand that a photocopy of this authorization is as valid as the original. 
+    
+    For purposes of discussing my eligibility for public housing only, I further Authorize ${ agency } to inspect (Not Copy) any CORI information about me held by the Boston Housing Authority.
 ---
 id: BHA_Authorization_of_Release_English review screen
 event: review_BHA_Authorization_of_Release_English
