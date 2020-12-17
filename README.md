@@ -3,7 +3,7 @@
 
 
 ## Author:
-## Mike Carroll
+## Mike Carroll mcarroll11@su.suffolk.edu
 
-mcarroll11@su.suffolk.edu
+
 
