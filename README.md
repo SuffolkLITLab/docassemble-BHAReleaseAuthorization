@@ -17,7 +17,7 @@ Browsing the current options available to someone in need of help securing affor
 
 Knowing all of this, the process of envisioning a solution was fairly straight forward. We identified a need- a product that could provide information and direction, while also making tangible progress toward the user's ultimate goal-getting the correct documents to the appropriate people, so that they can move in to their new home as quickly as possible. After spending sometime comparing the currrent options available (discussed above), we began looking into the document assemblyline project as a possible vehichle to deliver our solution through. We began experimenting with existing interviews to ascertain the capabilities of devloping on docassemble. We discussed what our ideal solution would look like, as well as what would be a succesful minimum viable product. We drew up some wireframes and low-fi mockups of what this app would look like, and how the user flows might run. After several brainstorming sessions, we had our gameplan and began to work towards MVPs for our respective forms. 
 
-
+# User Testing and Refinement.
 
 
 
