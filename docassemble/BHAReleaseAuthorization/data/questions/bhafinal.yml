@@ -57,12 +57,14 @@ code: |
   agency
   agency_phone_number
   agency_relationship
-  set_progress(14.29)
   # Pre-canned preview screen
   user_signature
   BHA_Authorization_of_Release_English = True
   users.there_is_another= False
   court_emails = False
+---
+features:
+  progress bar: True
 ---
 id: your address
 question: |
@@ -81,6 +83,7 @@ fields:
     default: MA      
   - Zip: users[0].address.zip
     required: False
+progress: 20
 ---
 question: |
   Sign your name
@@ -111,12 +114,8 @@ terms:
     BOSTON, MA – With the evolving of COVID-19, the Boston Housing Authority is announcing heightened restrictions at its Chauncy Street Headquarters and public housing developments in order to limit in-person contact and protect BHA residents, voucher holders and staff. These changes go into effect Wednesday, March 18, 2020. In-person appointments at BHA’s Occupancy Department will be conducted by phone and through the use of electronic technology or will be rescheduled, as appropriate.
     
     BHA staff will continue to provide vital services by mail, phone, and electronic technology for the foreseeable future. In addition, visitationto BHA’s Elderly/Disabled Public Housing Developments will be limited to primary caregivers, service providers and family necessary to the health and wellbeing of residents.
-   
-under: |
-  **Note:** [click here](https://www.bostonhousing.org/en/News/Boston-Housing-Authority-will-reduce-walk-ins-at-m.aspx) to read the full announcement. 
-  
 script: |
-  <p style="text-align: center; top"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.4786931024523!2d-71.06208338454388!3d42.35363657918726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082946064ef%3A0xf37ccf96a6c91b4a!2s56%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608191126357!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  <p style="text-align: center;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.4786931024523!2d-71.06208338454388!3d42.35363657918726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082946064ef%3A0xf37ccf96a6c91b4a!2s56%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608191126357!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 css: |
  <style>
   div.relative {
@@ -124,6 +123,8 @@ css: |
     center: 30px;
    } 
  </style>
+under: |
+  **Note:** [click here](https://www.bostonhousing.org/en/News/Boston-Housing-Authority-will-reduce-walk-ins-at-m.aspx) to read the full announcement. 
 ---
 id: mass access intro
 continue button field: ma_access_intro
@@ -201,6 +202,7 @@ fields:
   - 'X X X - X X -': user_social_security 
     datatype: text
     maxlength: 4
+progress: 40
 ---
 id: Agency Information
 question: |
@@ -214,6 +216,7 @@ fields:
 terms:
   agency or individual: |
     Your agency is the party assisting you with your housing application process. Your agency may be a non-profit organization or other advocacy group, government organization (DCF, Family Services, etc.), an attorney/law firm, or other private individual. For help finding out who your agency is, call you can contactthe BHA Occupancy/Admissions Department at <a href="tel:6179883400">(617)988-3400</a>, or visit their [Contact Us Page](https://www.bostonhousing.org/en/Contact-Us.aspx).
+progress: 65
 ---
 id: client status
 question: |
@@ -233,6 +236,7 @@ under: |
 terms:
   client control number: |
     BHA assigns all new clients a client control number. If you have previously recieved services through BHA, your client control number will appear at the top of any official correspondance you recieved from BHA. If you are unsure, answer "no" and press "next." 
+progress: 50
 ---
 question: |
   What kind of {agency} are you currently working with?
@@ -251,6 +255,7 @@ fields:
 terms:
   agency: |
     Your agency is the party assisting you with your housing application process. Your agency may be a non-profit organization or other advocacy group, government organization (DCF, Family Services, etc.), an attorney/law firm, or other private individual. For help finding out who your agency is, call you can contact the BHA Occupancy/Admissions Department at <a href="tel:6179883400">(617)988-3400</a>, or visit their [Contact Us Page](https://www.bostonhousing.org/en/Contact-Us.aspx).
+progress: 85
 ---
 progress: 100
 mandatory: True
@@ -308,6 +313,7 @@ terms:
     I, ${ users[0] }, hereby authorize ${ agency }, to inspect and/or copy all records maintained by the Boston Housing Authority Occupancy Department as part of my applicant file. I understand that a photocopy of this authorization is as valid as the original. 
     
     For purposes of discussing my eligibility for public housing only, I further Authorize ${ agency } to inspect (Not Copy) any CORI information about me held by the Boston Housing Authority.
+progress: 95
 ---
 id: BHA_Authorization_of_Release_English review screen
 event: review_BHA_Authorization_of_Release_English
