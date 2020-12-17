@@ -101,7 +101,14 @@ terms:
 under: |
   **Note:** [click here](https://www.bostonhousing.org/en/News/Boston-Housing-Authority-will-reduce-walk-ins-at-m.aspx) to read the full announcement. 
 script: |
-    <p style="text-align: center; top"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.4786931024523!2d-71.06208338454388!3d42.35363657918726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082946064ef%3A0xf37ccf96a6c91b4a!2s56%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608191126357!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  <p style="text-align: center; top"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.4786931024523!2d-71.06208338454388!3d42.35363657918726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37082946064ef%3A0xf37ccf96a6c91b4a!2s56%20Chauncy%20St%2C%20Boston%2C%20MA%2002111!5e0!3m2!1sen!2sus!4v1608191126357!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+css: |
+ <style>
+  div.relative {
+    position: relative;
+    center: 30px;
+   } 
+ </style>
 ---
 id: mass access intro
 continue button field: ma_access_intro
