@@ -19,7 +19,12 @@ Knowing all of this, the process of envisioning a solution was fairly straight f
 
 # User Testing and Refinement.
 
+One of the major advantages of working in a group was the ample opportunity to constantly test,  provide feedback, and iterate on our forms throughout this process. We were initially considering trying to do a package interview, where one interview could concievably fillout all three forms. While this is still a stretch goal of mine, the scope of that idea proved to be too broad for our purposes. We refocused our sights, and continued to brainstorm ideas to bring the project into digestible bits we could all handle. That is when we arrived at the idea of creating another, standard, release form, that may have morre wide applications than the BHA. We wanted to provide clients with an array of options and avenues to pursue, and having a generic release allowed us to do exactly that. 
 
+One of my favorite aspects about this project, and the nature of this work as a whole, is the constant building and adaptation that occurrs. My earliest "MVPs" were  clumsy and frankly, ugly. Overtime, as the ideas, inspiration, and time made themselves available, I was plesently pleased with the constant march of progress this project took on. By the time we had our external partner review with Professors Colarusso and Steenhuis, I felt good about what I was ready to present. After an extremely insightful and productive sitdown, I went back to my github repo with a laundry list (in a good way) of issues to create and resolve, in the constant growing process that was designing this product. 
 
+Upon implementation of our Partner feedback, we began more structured, capturable user feedback, through testing scenarios, designed to catch all the most difficult "edge cases" the app may need to face. Using a googlesheet to track errors and feedback, I was able to iron out most of the most glaring obstacles between me and a viable MVP. This real-world testing, usinng non-familiar users, proved invaluable for taking an objective view at my product, through the eyes of the average end user. This feedback proved particularly critical in motivating me to include embeded hyperlinks using HTML. I even attempted embedding a google map, pinned on the Occupancy Department (I still have to work out some kinks with that-the map kind of comes and goes as it  wants). 
 
+# Flashback: The Pitch
+<a href="https://docs.google.com/presentation/d/1KKZd9GNPwF8sTqx4ZWrBGwT4BzJtNR34_y1QoP8aU-c/edit#slide=id.g9d4fd5d06a_0_310"Deck></a>
 
