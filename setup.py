@@ -1,6 +1,6 @@
 import os
 import sys
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 from fnmatch import fnmatchcase
 from distutils.util import convert_path
 
@@ -51,8 +51,7 @@ setup(name='docassemble.BHAReleaseAuthorization',
       author_email='mcarroll11@su.suffolk.edu',
       license='',
       url='https://github.com/SuffolkLITLab/docassemble-BHA_Release_Authorization',
-      packages=find_packages(),
-      namespace_packages=['docassemble'],
+      packages=find_namespace_packages(),
       install_requires=['docassemble.MAVirtualCourt'],
       zip_safe=False,
       package_data=find_package_data(where='docassemble/BHAReleaseAuthorization/', package='docassemble.BHAReleaseAuthorization'),
