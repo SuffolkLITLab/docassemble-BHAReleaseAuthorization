@@ -224,7 +224,7 @@ question: |
 subquestion: |
   Have you recieved services from the Boston Housing Authority before?
 fields:
-  - : has_client_number
+  - no label: has_client_number
     datatype: yesnoradio
     required: false 
   - "What is your {client control number}": client_control_number

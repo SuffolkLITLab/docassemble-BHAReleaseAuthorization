@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.BHAReleaseAuthorization',
-      version='',
+      version='0.0.1',
       description=(''),
       long_description='# docassemble.BHAReleaseAuthorization\r\n\r\n\r\n\r\n## Author\r\n\r\nmcarroll11@su.suffolk.edu\r\n\r\n',
       long_description_content_type='text/markdown',
