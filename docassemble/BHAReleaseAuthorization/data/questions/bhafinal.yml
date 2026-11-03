@@ -85,6 +85,7 @@ fields:
     required: False
 progress: 20
 ---
+id: "sign your name"
 question: |
   Sign your name
 subquestion: |
@@ -224,7 +225,7 @@ question: |
 subquestion: |
   Have you recieved services from the Boston Housing Authority before?
 fields:
-  - no label: has_client_number
+  - "Are you in BHA's system already?": has_client_number
     datatype: yesnoradio
     required: false 
   - "What is your {client control number}": client_control_number
@@ -238,6 +239,7 @@ terms:
     BHA assigns all new clients a client control number. If you have previously recieved services through BHA, your client control number will appear at the top of any official correspondance you recieved from BHA. If you are unsure, answer "no" and press "next." 
 progress: 50
 ---
+id: "what kind of agency are you currently working with"
 question: |
   What kind of {agency} are you currently working with?
 fields:
